@@ -1,0 +1,16 @@
+canvas {
+    width: 100vw;
+    height: 100vh;
+}
+
+
+#h2, #h2i {
+    color: white;
+    z-index: 1000;
+}
+
+#divC, divZ {
+    position: absolute;
+    z-index: 2000;
+}
+
