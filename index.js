@@ -49,7 +49,7 @@ function fractal () {
 
             
                            /*127*/
-            for (var i=0; i<250; i++) {
+            for (var i=0; i<127; i++) {
                 c2 = math.add ( math.pow(c2,2) ,c);
 
                 var modulo = Math.sqrt ( (c2.re * c2.re)+(c2.im * c2.im) );
