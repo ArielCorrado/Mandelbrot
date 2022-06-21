@@ -63,12 +63,12 @@ function fractal () {
            
             if (modulo < 2) {
              
-                contexto.fillStyle = "rgb(0,0,0)";
+                contexto.fillStyle = "rgb(20,20,20)";
                 contexto.fillRect(x,y,1,1);
 
-            } else {                       /*  5       2       10*/
+            } else {                       /*  4       2       10*/
                  
-                contexto.fillStyle = `rgb(${it*8},${it*4},${it*20})`;   /*Jugamos con los colores: it es el numero de iteraciones que se usaron*/
+                contexto.fillStyle = `rgb(${it*2},${it*1},${it*5})`;   /*Jugamos con los colores: it es el numero de iteraciones que se usaron*/
                 contexto.fillRect(x,y,1,1);                             /* para que el complejo actual escape la formula al infinito*/        
                       
             }
