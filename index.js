@@ -42,25 +42,27 @@ function fractal () {
             y1000 = (  (y/alto) *   (-Aiy) )  + iiy ;
           
          
-            var c = math.complex (x1000,y1000);
-            
+            var c = {r: x1000, i: y1000};
 
-            var c2 = 0;
+            var c2 = {r: 0, i: 0};
+            var c2cuad = {r:0, i:0};
 
             
                            /*127*/
-            for (var i=0; i<127; i++) {
-                c2 = math.add ( math.pow(c2,2) ,c);
+            for (var i=0; i<512; i++) {
+                c2cuad.r = (c2.r * c2.r) - (c2.i * c2.i); 
+                c2cuad.i = 2 * c2.r * c2.i;
 
-                var modulo = Math.sqrt ( (c2.re * c2.re)+(c2.im * c2.im) );
+                c2.r = c2cuad.r + c.r
+                c2.i =  c2cuad.i + c.i;
+
+                var modulo = Math.sqrt ( (c2.r * c2.r)+(c2.i * c2.i) );
                 if (modulo < 2) {
                     var it = i;
                 } else break;                              /*Si el modulo del complejo resultante es mayor a 2 es porque la formula se va a*/
                                                            /* ecapar al infinito entonces salimos del for para no seguir iterando y graficar*/
             }                                              /* mas rapido */ 
-
-            
-
+           
             if (modulo < 2) {
              
                 contexto.fillStyle = "rgb(0,0,0)";
@@ -72,15 +74,8 @@ function fractal () {
                 contexto.fillRect(x,y,1,1);                             /* para que el complejo actual escape la formula al infinito*/        
                       
             }
-
-
-
         }
-    
-    
     }
- 
-    
 }
 
 
