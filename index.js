@@ -23,19 +23,15 @@
 
 function fractal () {
     
-    document.getElementById("canvas").style.width = `${window.innerWidth}px`;
-    document.getElementById("canvas").style.height = `${window.innerHeight}px`;
-
     var canvas = document.getElementById("canvas");
     var contexto = canvas.getContext("2d");
        
-    canvas.width = canvas.getBoundingClientRect().width;                /*Estas dos lineas son para que los pixeles dibujados no se vean borrosos*/
-    canvas.height = canvas.getBoundingClientRect().height;
+    canvas.width =  window.innerWidth;
+    canvas.height =  window.innerHeight;
+    
 
-       
-
-    for (var x = 0; x <= window.innerWidth; x++) {
-        for (var y = 0; y <= window.innerHeight; y++) {
+    for (var x = 0; x <= ancho; x++) {
+        for (var y = 0; y <= alto; y++) {
                       
                                                        
             x1000 = (  (x/ancho) *  (Aix) )  + iix ;
@@ -46,10 +42,10 @@ function fractal () {
 
             var c2 = {r: 0, i: 0};
             var c2cuad = {r:0, i:0};
-
             
-                           /*127*/
-            for (var i=0; i<512; i++) {
+                           
+            for (var i=0; i<1024; i++) {
+
                 c2cuad.r = (c2.r * c2.r) - (c2.i * c2.i); 
                 c2cuad.i = 2 * c2.r * c2.i;
 
