@@ -1,3 +1,10 @@
+*{
+    box-sizing: border-box;         /*VALORES AGREGAGOS*****************https://www.youtube.com/watch?v=OWKXEJN67FE 1:22:00************************************/
+    padding: 0;                     /*BORDER BOX: las CAJAS SERÁN DEL VALOR INDICADO INDEPENDIENTEMENTE DEL PADDING****************************************/
+    margin: 0;                      /*Si no ponemos esta opcion las cajas serán del valor indicado mas el padding. Si una caja tiene 400x400px */
+ }        
+
+
 canvas {
     width: 100vw;
     height: 100vh;
