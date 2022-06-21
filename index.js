@@ -1,3 +1,5 @@
+/*Graficador de Conjunto de Mandelbrot con Zoom*/
+
 
  Aix = 5;        
  Aiy = (Aix / 2);  
