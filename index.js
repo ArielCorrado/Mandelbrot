@@ -23,6 +23,79 @@
  var alto = window.innerHeight;                                     /*Alto del viewport*/    
 
 
+    var C1 = {r:0, g:0, b:128};                                     //Color mas alejado del conjunto de mandelbrot (preferentemente oscuro)
+    var C2 = {r:255, g:127, b:127};
+    var C3 = {r:255, g:255, b:255};
+    
+    var vector = [];
+    var gradiente = [];
+      
+    for (i=0; i<=512; i++) {
+        gradiente[i] = {r:0, g:0, b:0};
+    }
+       
+        
+   
+ 
+    genVector (C1.r, C2.r);
+        for (i=0; i<=255; i++) {
+            gradiente[i].r = vector[i];
+        }
+        
+      
+    genVector (C2.r, C3.r);
+        for (i=256; i<=512; i++) {
+            gradiente[i].r = vector[i-256];
+        }
+        
+    
+    genVector (C1.g, C2.g);
+        for (i=0; i<=255; i++) {
+            gradiente[i].g = vector[i];
+        }
+        
+
+    genVector (C2.g, C3.g);
+        for (i=256; i<=512; i++) {
+            gradiente[i].g = vector[i-256];
+        }
+
+
+    genVector (C1.b, C2.b);
+        for (i=0; i<=255; i++) {
+            gradiente[i].b = vector[i];
+    }
+            
+ 
+    genVector (C2.b, C3.b);
+        for (i=256; i<=511; i++) {
+            gradiente[i].b = vector[i-256];
+        }
+         
+         
+
+
+        
+                            
+
+    function genVector (vi, vf) {
+        
+        var pasos = (vf - vi) / 255;
+        vector[0] = vi;
+
+        for (i=1; i<=255; i++) {
+
+            vector[i] = vi;
+            vector[i] += pasos;
+            vi += pasos;
+
+        }
+        
+    }
+
+
+
+
 function fractal () {
     
     var canvas = document.getElementById("canvas");
@@ -30,6 +103,7 @@ function fractal () {
        
     canvas.width =  window.innerWidth;
     canvas.height =  window.innerHeight;
+
     
 
     for (var x = 0; x <= ancho; x++) {
@@ -44,9 +118,9 @@ function fractal () {
 
             var c2 = {r: 0, i: 0};
             var c2cuad = {r:0, i:0};
-            
+            var it = 0;
                            
-            for (var i=0; i<1024; i++) {
+            for (var i=0; i<512; i++) {
 
                 c2cuad.r = (c2.r * c2.r) - (c2.i * c2.i); 
                 c2cuad.i = 2 * c2.r * c2.i;
@@ -56,7 +130,7 @@ function fractal () {
 
                 var modulo = Math.sqrt ( (c2.r * c2.r)+(c2.i * c2.i) );
                 if (modulo < 2) {
-                    var it = i;
+                    it = i;
                 } else break;                              /*Si el modulo del complejo resultante es mayor a 2 es porque la formula se va a*/
                                                            /* ecapar al infinito entonces salimos del for para no seguir iterando y graficar*/
             }                                              /* mas rapido */ 
@@ -66,11 +140,11 @@ function fractal () {
                 contexto.fillStyle = "rgb(20,20,20)";
                 contexto.fillRect(x,y,1,1);
 
-            } else {                       /*  4       2       10*/
-                 
-                contexto.fillStyle = `rgb(${it*2},${it*1},${it*5})`;   /*Jugamos con los colores: it es el numero de iteraciones que se usaron*/
-                contexto.fillRect(x,y,1,1);                             /* para que el complejo actual escape la formula al infinito*/        
-                      
+            } else {                      
+                                           
+                contexto.fillStyle = `rgb(${gradiente[it].r},${gradiente[it].g},${gradiente[it].b})`;   /*Jugamos con los colores: it es el numero de iteraciones que se usaron*/
+                contexto.fillRect(x,y,1,1);                                                              /* para que el complejo actual escape la formula al infinito*/        
+                     
             }
         }
     }
