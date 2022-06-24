@@ -139,8 +139,8 @@ function fractal () {
         for (var y = 0; y <= alto; y++) {
                       
                                                        
-            x1000 = (  (x/ancho) *  (Aix) )  + iix ;
-            y1000 = (  (y/alto) *   (-Aiy) )  + iiy ;
+            x1000 = ( (x/ancho) * (Aix) ) + iix ;
+            y1000 = ( (y/alto) * (-Aiy) ) + iiy ;
           
          
             var c = {r: x1000, i: y1000};
@@ -151,13 +151,13 @@ function fractal () {
                            
             for (var i=0; i<1024; i++) {
 
-                c2cuad.r = (c2.r * c2.r) - (c2.i * c2.i); 
+                c2cuad.r = (c2.r ** 2) - (c2.i ** 2); 
                 c2cuad.i = 2 * c2.r * c2.i;
 
                 c2.r = c2cuad.r + c.r
                 c2.i =  c2cuad.i + c.i;
 
-                var modulo = Math.sqrt ( (c2.r * c2.r)+(c2.i * c2.i) );
+                var modulo = Math.sqrt ( (c2.r ** 2) + (c2.i ** 2) );
                 if (modulo < 2) {
                     it = i;
                 } else break;                              /*Si el modulo del complejo resultante es mayor a 2 es porque la formula se va a*/
@@ -193,7 +193,7 @@ function coordenadas () {
     y1000 = (  (event.pageY/alto) *   (-Aiy) )  + iiy ;
 
 
-    document.getElementById("h2i").innerHTML = `xi: ${x1000.toFixed(3)} , yi: ${y1000.toFixed(3)}`;  
+    document.getElementById("h2i").innerHTML = `a: ${x1000.toFixed(3)} , bi: ${y1000.toFixed(3)}`;  
 
 
     
