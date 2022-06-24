@@ -10,7 +10,10 @@ canvas {
     height: 100vh;
 }
 
-
+body {
+   filter: brightness(250%);
+}
+  
 #h2, #h2i {
     color: white;
     z-index: 1000;

@@ -23,14 +23,16 @@
  var alto = window.innerHeight;                                     /*Alto del viewport*/    
 
 
-    var C1 = {r:0, g:0, b:128};                                     //Color mas alejado del conjunto de mandelbrot (preferentemente oscuro)
-    var C2 = {r:255, g:127, b:127};
-    var C3 = {r:255, g:255, b:255};
+    var C1 = {r:8, g:16, b:32};                                     //Color mas alejado del conjunto de mandelbrot (preferentemente oscuro)
+    var C2 = {r:255, g:127, b:0}; 
+    var C3 = {r:255, g:255, b:0};
+    var C4 = {r:255, g:255, b:127};
+    var C5 = {r:255, g:255, b:255};
     
     var vector = [];
     var gradiente = [];
       
-    for (i=0; i<=512; i++) {
+    for (i=0; i<=1024; i++) {
         gradiente[i] = {r:0, g:0, b:0};
     }
        
@@ -41,38 +43,65 @@
         for (i=0; i<=255; i++) {
             gradiente[i].r = vector[i];
         }
-        
-      
+              
     genVector (C2.r, C3.r);
-        for (i=256; i<=512; i++) {
+        for (i=256; i<=511; i++) {
             gradiente[i].r = vector[i-256];
         }
-        
-    
+
+    genVector (C3.r, C4.r);
+        for (i=512; i<=767; i++) {
+            gradiente[i].r = vector[i-512];
+        }
+            
+    genVector (C4.r, C5.r);
+        for (i=768; i<=1024; i++) {
+            gradiente[i].r = vector[i-768];
+        }    
+
+
+
     genVector (C1.g, C2.g);
         for (i=0; i<=255; i++) {
             gradiente[i].g = vector[i];
         }
         
-
     genVector (C2.g, C3.g);
-        for (i=256; i<=512; i++) {
+        for (i=256; i<=511; i++) {
             gradiente[i].g = vector[i-256];
         }
+
+    genVector (C3.g, C4.g);
+        for (i=512; i<=767; i++) {
+            gradiente[i].g = vector[i-512];
+        }    
+
+    genVector (C4.g, C5.g);
+        for (i=768; i<=1024; i++) {
+            gradiente[i].g = vector[i-768];
+        }     
+
 
 
     genVector (C1.b, C2.b);
         for (i=0; i<=255; i++) {
             gradiente[i].b = vector[i];
-    }
-            
- 
+        }
+    
     genVector (C2.b, C3.b);
         for (i=256; i<=511; i++) {
             gradiente[i].b = vector[i-256];
         }
+
+    genVector (C3.b, C4.b);
+        for (i=512; i<=767; i++) {
+            gradiente[i].b = vector[i-512];
+        }     
          
-         
+    genVector (C4.b, C5.b);
+        for (i=768; i<=1024; i++) {
+            gradiente[i].b = vector[i-768];
+        }      
 
 
         
@@ -88,7 +117,7 @@
             vector[i] = vi;
             vector[i] += pasos;
             vi += pasos;
-
+            
         }
         
     }
@@ -120,7 +149,7 @@ function fractal () {
             var c2cuad = {r:0, i:0};
             var it = 0;
                            
-            for (var i=0; i<512; i++) {
+            for (var i=0; i<1024; i++) {
 
                 c2cuad.r = (c2.r * c2.r) - (c2.i * c2.i); 
                 c2cuad.i = 2 * c2.r * c2.i;
@@ -137,11 +166,10 @@ function fractal () {
            
             if (modulo < 2) {
              
-                contexto.fillStyle = "rgb(20,20,20)";
+                contexto.fillStyle = "rgb(10,10,10)";
                 contexto.fillRect(x,y,1,1);
 
             } else {                      
-                                           
                 contexto.fillStyle = `rgb(${gradiente[it].r},${gradiente[it].g},${gradiente[it].b})`;   /*Jugamos con los colores: it es el numero de iteraciones que se usaron*/
                 contexto.fillRect(x,y,1,1);                                                              /* para que el complejo actual escape la formula al infinito*/        
                      
@@ -226,8 +254,5 @@ function coordF () {
     div.style.height = 0;
     div.style.display = "none";    
 
-
-
     fractal ();
-
 }
