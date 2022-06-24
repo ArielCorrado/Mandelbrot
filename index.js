@@ -213,6 +213,11 @@ function coordenadas () {
 
 function coordI () {
     
+        if (cont == 1) {
+            coordF();
+            return;
+        }
+
     xi = (  (event.pageX/ancho) *  (Aix) )  + iix ;
     yi = (  (event.pageY/alto) *   (-Aiy) )  + iiy ;
 
