@@ -31,98 +31,9 @@
     
     var vector = [];
     var gradiente = [];
-      
-    for (i=0; i<=1024; i++) {
-        gradiente[i] = {r:0, g:0, b:0};
-    }
-       
-        
-   
- 
-    genVector (C1.r, C2.r);
-        for (i=0; i<=255; i++) {
-            gradiente[i].r = vector[i];
-        }
-              
-    genVector (C2.r, C3.r);
-        for (i=256; i<=511; i++) {
-            gradiente[i].r = vector[i-256];
-        }
 
-    genVector (C3.r, C4.r);
-        for (i=512; i<=767; i++) {
-            gradiente[i].r = vector[i-512];
-        }
-            
-    genVector (C4.r, C5.r);
-        for (i=768; i<=1024; i++) {
-            gradiente[i].r = vector[i-768];
-        }    
-
-
-
-    genVector (C1.g, C2.g);
-        for (i=0; i<=255; i++) {
-            gradiente[i].g = vector[i];
-        }
-        
-    genVector (C2.g, C3.g);
-        for (i=256; i<=511; i++) {
-            gradiente[i].g = vector[i-256];
-        }
-
-    genVector (C3.g, C4.g);
-        for (i=512; i<=767; i++) {
-            gradiente[i].g = vector[i-512];
-        }    
-
-    genVector (C4.g, C5.g);
-        for (i=768; i<=1024; i++) {
-            gradiente[i].g = vector[i-768];
-        }     
-
-
-
-    genVector (C1.b, C2.b);
-        for (i=0; i<=255; i++) {
-            gradiente[i].b = vector[i];
-        }
-    
-    genVector (C2.b, C3.b);
-        for (i=256; i<=511; i++) {
-            gradiente[i].b = vector[i-256];
-        }
-
-    genVector (C3.b, C4.b);
-        for (i=512; i<=767; i++) {
-            gradiente[i].b = vector[i-512];
-        }     
-         
-    genVector (C4.b, C5.b);
-        for (i=768; i<=1024; i++) {
-            gradiente[i].b = vector[i-768];
-        }      
-
-
-        
-                            
-
-    function genVector (vi, vf) {
-        
-        var pasos = (vf - vi) / 255;
-        vector[0] = vi;
-
-        for (i=1; i<=255; i++) {
-
-            vector[i] = vi;
-            vector[i] += pasos;
-            vi += pasos;
-            
-        }
-        
-    }
-
-
+    colores();
+  
 
 
 function fractal () {
@@ -144,8 +55,9 @@ function fractal () {
           
          
             var c = {r: x1000, i: y1000};
+               
 
-            var c2 = {r: 0, i: 0};
+            var c2 = {r:0, i:0};
             var c2cuad = {r:0, i:0};
             var it = 0;
                            
@@ -154,7 +66,7 @@ function fractal () {
                 c2cuad.r = (c2.r ** 2) - (c2.i ** 2); 
                 c2cuad.i = 2 * c2.r * c2.i;
 
-                c2.r = c2cuad.r + c.r
+                c2.r = c2cuad.r + c.r;
                 c2.i =  c2cuad.i + c.i;
 
                 var modulo = Math.sqrt ( (c2.r ** 2) + (c2.i ** 2) );
@@ -261,3 +173,93 @@ function coordF () {
 
     fractal ();
 }
+
+
+
+function colores () {
+     
+    for (i=0; i<=1024; i++) {
+        gradiente[i] = {r:0, g:0, b:0};
+    }
+     
+ 
+    genVector (C1.r, C2.r);
+        for (i=0; i<=255; i++) {
+            gradiente[i].r = vector[i];
+        }
+              
+    genVector (C2.r, C3.r);
+        for (i=256; i<=511; i++) {
+            gradiente[i].r = vector[i-256];
+        }
+
+    genVector (C3.r, C4.r);
+        for (i=512; i<=767; i++) {
+            gradiente[i].r = vector[i-512];
+        }
+            
+    genVector (C4.r, C5.r);
+        for (i=768; i<=1024; i++) {
+            gradiente[i].r = vector[i-768];
+        }    
+
+
+
+    genVector (C1.g, C2.g);
+        for (i=0; i<=255; i++) {
+            gradiente[i].g = vector[i];
+        }
+        
+    genVector (C2.g, C3.g);
+        for (i=256; i<=511; i++) {
+            gradiente[i].g = vector[i-256];
+        }
+
+    genVector (C3.g, C4.g);
+        for (i=512; i<=767; i++) {
+            gradiente[i].g = vector[i-512];
+        }    
+
+    genVector (C4.g, C5.g);
+        for (i=768; i<=1024; i++) {
+            gradiente[i].g = vector[i-768];
+        }     
+
+
+
+    genVector (C1.b, C2.b);
+        for (i=0; i<=255; i++) {
+            gradiente[i].b = vector[i];
+        }
+    
+    genVector (C2.b, C3.b);
+        for (i=256; i<=511; i++) {
+            gradiente[i].b = vector[i-256];
+        }
+
+    genVector (C3.b, C4.b);
+        for (i=512; i<=767; i++) {
+            gradiente[i].b = vector[i-512];
+        }     
+         
+    genVector (C4.b, C5.b);
+        for (i=768; i<=1024; i++) {
+            gradiente[i].b = vector[i-768];
+        }      
+
+        
+
+    function genVector (vi, vf) {
+        var pasos = (vf - vi) / 255;
+        vector[0] = vi;
+
+        for (i=1; i<=255; i++) {
+
+            vector[i] = vi;
+            vector[i] += pasos;
+            vi += pasos;
+        }
+    }
+}
+
+   
